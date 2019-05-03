@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Learning
+namespace ScottAllen
 {
     class Program
     {

@@ -1,0 +1,34 @@
+﻿Topplistan
+
+Actors
+------
+Admin(Create Songlist)
+User(Create Account & Create UserSonglist)
+
+Usecases Admin
+--------------
+On First Application startup generate default admin password
+Login as Admin
+Add new song to Songlist
+Show Songlist
+Show User
+Show UserSonglist
+
+Usecases User
+-------------
+Login as User
+Show UserSonglist
+Add song to UserSonglist from Songlist 
+
+
+
+
+
+
+
+
+On First Application startup generate default admin password
+____________________________________________________________
+Find password file
+If not found create file 
+In file write on first row default admin password 
