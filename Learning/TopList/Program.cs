@@ -7,10 +7,21 @@ namespace TopList
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Topplistan");
-            TopList topList = new TopList();
+            //for (int sam = 100; sam >=0; sam--)
+            //Console.WriteLine("sam =" + sam);
 
-           
+            //int krille = 0;
+            //while (krille < 10)
+            //{
+               
+
+            //    Console.WriteLine("sam =" + krille);
+
+            //    krille++;
+            //}
+
+             TopList topList = new TopList();
+
 
         }
     }

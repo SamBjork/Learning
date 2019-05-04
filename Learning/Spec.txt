@@ -16,6 +16,7 @@ Show UserSonglist
 
 Usecases User
 -------------
+Create UserAccount(Make sure it's uniqe and not same as Admin password)
 Login as User
 Show UserSonglist
 Add song to UserSonglist from Songlist 
@@ -32,3 +33,11 @@ ____________________________________________________________
 Find password file
 If not found create file 
 In file write on first row default admin password 
+
+Login as Admin
+_______________
+Create menu with one choice: Login
+Recieve Admin password or Username
+Check if string is Admin or User
+if Admin: show Admin menu
+if User: show User menu
