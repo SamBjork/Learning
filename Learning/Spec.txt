@@ -41,3 +41,4 @@ Recieve Admin password or Username
 Check if string is Admin or User
 if Admin: show Admin menu
 if User: show User menu
+if none of above: wrong password: ask again for Login

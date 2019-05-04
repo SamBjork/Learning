@@ -5,32 +5,78 @@ namespace TopList
 {
     public class TopList
     {
-        private const string PasswordFileName = "Password.TopList";
 
         public TopList()
         {
+            TopListAdministrator Admin;
+            TopListUser User;
+
             Console.WriteLine("Topplistan");
 
             CreateNewPasswordFileIfNotExist();
 
-            Login();
+            string UserName = Login();
+
+            if (UserName == "Administrator")
+            {
+                Admin = new TopListAdministrator();
+            }
+            else 
+            {
+                User = new TopListUser(UserName);
+            }
         }
 
 
         private bool ValidateUserLogin(string login)
         {
-            if (login == "user")
-                return true;
-            else
-                return false;
+            string line;
+
+            System.IO.StreamReader file =
+                new System.IO.StreamReader(Common.PasswordFileName);
+            while ((line = file.ReadLine()) != null)
+            {
+                string[] RowStrings = line.Split(';');
+
+                if (RowStrings[0] == "User")
+                {
+                    if (RowStrings[1] == login)
+                    {
+                        file.Close();
+                        return true;
+                    }
+
+                }
+            }
+
+            file.Close();
+            return false;
         }
 
         private bool ValidateAdministratorLogin(string login)
         {
-            if (login == "admin")
-                return true;
-            else
-                return false;
+
+            string line;
+
+            System.IO.StreamReader file =
+                new System.IO.StreamReader(Common.PasswordFileName);
+            while ((line = file.ReadLine()) != null)
+            {
+                string[] RowStrings = line.Split(';');
+
+                if (RowStrings[0] == "Administrator")
+                {
+                    if (RowStrings[1] == login)
+                    {
+                        file.Close();
+                        return true;
+                    }
+                        
+                }
+            }
+
+            file.Close();
+            return false;
         }
 
         private string RequestLoginFromUser()
@@ -43,20 +89,21 @@ namespace TopList
         {
             if (CheckIfPasswordFileExist() == false)
             {
-                string[] lines = { "Administrator;admin", "Administrator;admin2" };
-                System.IO.File.WriteAllLines(PasswordFileName, lines);
+                string[] lines = { "Administrator;admin;DarkRed" };
+                System.IO.File.WriteAllLines(Common.PasswordFileName, lines);
             }
         }
 
         private bool CheckIfPasswordFileExist()
         {
-            if (File.Exists(PasswordFileName))
+            if (File.Exists(Common.PasswordFileName))
                 return true;
             else
                 return false;
         }
-        private void Login()
+        private string Login()
         {
+            string Username = "";
             while (true)
             {
                 string login = RequestLoginFromUser();
@@ -68,14 +115,14 @@ namespace TopList
                 {
                     if (ValidateAdministratorLogin(login))
                     {
-                        Console.WriteLine("Welcome Administrator");
+                        Username = "Administrator";
                         break;
                     }
                     else
                     {
                         if (ValidateUserLogin(login))
                         {
-                            Console.WriteLine("Welcome User");
+                            Username = login;
                             break;
                         }
                         else
@@ -83,6 +130,7 @@ namespace TopList
                     }
                 }
             }
+            return Username;
         }
     }
 }
