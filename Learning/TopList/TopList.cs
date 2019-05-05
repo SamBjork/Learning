@@ -8,8 +8,6 @@ namespace TopList
 
         public TopList()
         {
-            TopListAdministrator Admin;
-            TopListUser User;
 
             Console.WriteLine("Topplistan");
 
@@ -19,11 +17,11 @@ namespace TopList
 
             if (UserName == "Administrator")
             {
-                Admin = new TopListAdministrator();
+                TopListAdministrator Admin = new TopListAdministrator();
             }
             else 
             {
-                User = new TopListUser(UserName);
+                TopListUser User = new TopListUser(UserName);
             }
         }
 
@@ -32,8 +30,8 @@ namespace TopList
         {
             string line;
 
-            System.IO.StreamReader file =
-                new System.IO.StreamReader(Common.PasswordFileName);
+            StreamReader file = new StreamReader(Common.PasswordFileName);
+
             while ((line = file.ReadLine()) != null)
             {
                 string[] RowStrings = line.Split(';');
@@ -58,9 +56,11 @@ namespace TopList
 
             string line;
 
-            System.IO.StreamReader file =
-                new System.IO.StreamReader(Common.PasswordFileName);
-            while ((line = file.ReadLine()) != null)
+            StreamReader file = new StreamReader(Common.PasswordFileName);
+
+            line = file.ReadLine();
+
+            while ( line != null)
             {
                 string[] RowStrings = line.Split(';');
 
@@ -73,6 +73,8 @@ namespace TopList
                     }
                         
                 }
+
+                line = file.ReadLine();
             }
 
             file.Close();
@@ -89,8 +91,8 @@ namespace TopList
         {
             if (CheckIfPasswordFileExist() == false)
             {
-                string[] lines = { "Administrator;admin;DarkRed" };
-                System.IO.File.WriteAllLines(Common.PasswordFileName, lines);
+                string[] lines = { "Administrator;admin;DarkRed","User;Yngwe;Purple" };
+                File.WriteAllLines(Common.PasswordFileName, lines);
             }
         }
 
@@ -101,28 +103,33 @@ namespace TopList
             else
                 return false;
         }
+
+
+
+
+
         private string Login()
         {
             string Username = "";
             while (true)
             {
-                string login = RequestLoginFromUser();
+                string InputFromUser = RequestLoginFromUser();
 
-                if (login.Length <= 0)
+                if (InputFromUser.Length <= 0)
                     Console.WriteLine("Password must be minimun 1 character");
 
                 else
                 {
-                    if (ValidateAdministratorLogin(login))
+                    if (ValidateAdministratorLogin(InputFromUser))
                     {
                         Username = "Administrator";
                         break;
                     }
                     else
                     {
-                        if (ValidateUserLogin(login))
+                        if (ValidateUserLogin(InputFromUser))
                         {
-                            Username = login;
+                            Username = InputFromUser;
                             break;
                         }
                         else

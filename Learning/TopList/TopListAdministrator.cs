@@ -12,7 +12,7 @@ namespace TopList
 
             int CurPos = (Console.WindowWidth / 2) - (WelcomeText.Length / 2);
 
-            Console.SetCursorPosition(CurPos, 0);
+            Console.SetCursorPosition(CurPos, 5);
             Console.WriteLine(WelcomeText);
         }
 
