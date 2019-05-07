@@ -9,13 +9,14 @@ namespace TopList
             string UserColor = GetUserColor("Administrator");
             Console.BackgroundColor = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), UserColor, true);
             Console.Clear();
-
+            Console.BackgroundColor = ConsoleColor.DarkRed;
+            Console.ForegroundColor = ConsoleColor.Red;
             int CurPos = (Console.WindowWidth / 2) - (WelcomeText.Length / 2);
 
             Console.SetCursorPosition(CurPos, 5);
             Console.WriteLine(WelcomeText);
         }
-
+        
         private string GetUserColor(string UserName)
         {
             string line;

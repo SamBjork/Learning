@@ -91,7 +91,7 @@ namespace TopList
         {
             if (CheckIfPasswordFileExist() == false)
             {
-                string[] lines = { "Administrator;admin;DarkRed","User;Yngwe;Purple" };
+                string[] lines = { "Administrator;admin;DarkRed","User;Yngwe;Cyan" };
                 File.WriteAllLines(Common.PasswordFileName, lines);
             }
         }

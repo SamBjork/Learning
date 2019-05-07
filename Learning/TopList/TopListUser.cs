@@ -16,6 +16,8 @@ namespace TopList
             string UserColor = GetUserColor(UserName);
             Console.BackgroundColor = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), UserColor, true);
             Console.Clear();
+            Console.BackgroundColor = ConsoleColor.Cyan;
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
             string WelcomeAndUserName = WelcomeText + UserName;
             int CurPos = (Console.WindowWidth / 2) - ((WelcomeAndUserName).Length / 2);
 
